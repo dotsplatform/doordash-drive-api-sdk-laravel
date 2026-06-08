@@ -1,0 +1,69 @@
+{
+    "name": "dotsplatform/doordash-drive-api-sdk-laravel",
+    "description": "Laravel package for DoorDash Drive API - https://developer.doordash.com/en-US/docs/drive/",
+    "type": "library",
+    "require": {
+        "php": "^8.5",
+        "dotsplatform/utils": "^2.3",
+        "saloonphp/saloon": "^4.0",
+        "illuminate/support": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^11.4",
+        "larastan/larastan": "^2.7",
+        "eduarguz/shift-php-cs": "^3.0",
+        "laravel/laravel": "^11.0",
+        "orchestra/testbench": "^9.1"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Dots\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/",
+            "Workbench\\App\\": "workbench/app/",
+            "Workbench\\Database\\Factories\\": "workbench/database/factories/",
+            "Workbench\\Database\\Seeders\\": "workbench/database/seeders/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Bogdan Mamontov",
+            "email": "bohdan.mamontov@dotsplatform.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "scripts": {
+        "post-autoload-dump": [
+            "@clear",
+            "@prepare"
+        ],
+        "clear": "@php vendor/bin/testbench package:purge-skeleton --ansi",
+        "prepare": "@php vendor/bin/testbench package:discover --ansi",
+        "build": "@php vendor/bin/testbench workbench:build --ansi",
+        "serve": [
+            "Composer\\Config::disableProcessTimeout",
+            "@build",
+            "@php vendor/bin/testbench serve"
+        ],
+        "lint": [
+            "@php vendor/bin/phpstan analyse"
+        ],
+        "test": [
+            "@php vendor/bin/phpunit"
+        ],
+        "init-pre-commit": [
+            "cp .git-hooks-pre-commit .git/hooks/pre-commit"
+        ]
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Dots\\DoorDashDrive\\DoorDashDriveServiceProvider"
+            ]
+        }
+    }
+}

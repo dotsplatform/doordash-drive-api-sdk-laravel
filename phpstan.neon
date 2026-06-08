@@ -1,0 +1,17 @@
+includes:
+    - vendor/larastan/larastan/extension.neon
+
+parameters:
+    parallel:
+        jobSize: 8
+        maximumNumberOfProcesses: 64
+        minimumNumberOfJobsPerProcess: 16
+
+    level: 9
+    checkMissingIterableValueType: false
+    checkGenericClassInNonGenericObjectType: false
+    paths:
+        - src/DoorDashDrive
+
+    ignoreErrors:
+        - '#Method .*\\DoorDashDriveConnector::.* should return .*\\Responses\\.* but returns mixed.#'
