@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Description of WebhookEventType.php
  * @copyright Copyright (c) DOTSPLATFORM, LLC

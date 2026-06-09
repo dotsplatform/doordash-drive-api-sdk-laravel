@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Description of DeliveryResponseGenerator.php
  * @copyright Copyright (c) DOTSPLATFORM, LLC
@@ -12,7 +13,7 @@ class DeliveryResponseGenerator
     public static function generate(array $data = []): array
     {
         return array_merge([
-            'external_delivery_id' => 'D-' . uniqid(),
+            'external_delivery_id' => 'D-'.uniqid(),
             'delivery_status' => 'created',
             'currency' => 'USD',
             'fee' => 799,
@@ -37,8 +38,8 @@ class DeliveryResponseGenerator
             'dropoff_time_actual' => null,
             'contactless_dropoff' => false,
             'contains_alcohol' => false,
-            'tracking_url' => 'https://tracking.doordash.com/test-' . uniqid(),
-            'support_reference' => 'SR-' . uniqid(),
+            'tracking_url' => 'https://tracking.doordash.com/test-'.uniqid(),
+            'support_reference' => 'SR-'.uniqid(),
             'dasher_id' => null,
             'dasher_name' => null,
             'dasher_dropoff_phone_number' => null,

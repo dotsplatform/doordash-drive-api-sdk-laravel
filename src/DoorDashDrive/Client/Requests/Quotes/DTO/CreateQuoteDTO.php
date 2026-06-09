@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Description of CreateQuoteDTO.php
  * @copyright Copyright (c) DOTSPLATFORM, LLC
