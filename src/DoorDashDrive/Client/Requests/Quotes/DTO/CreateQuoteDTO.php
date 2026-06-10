@@ -38,8 +38,6 @@ class CreateQuoteDTO extends DTO
 
     protected ?string $dropoff_time;
 
-    protected ?bool $contains_alcohol;
-
     protected ?array $order_contains;
 
     public function getExternalDeliveryId(): string
@@ -105,11 +103,6 @@ class CreateQuoteDTO extends DTO
     public function getDropoffTime(): ?string
     {
         return $this->dropoff_time;
-    }
-
-    public function getContainsAlcohol(): ?bool
-    {
-        return $this->contains_alcohol;
     }
 
     public function getOrderContains(): ?array
