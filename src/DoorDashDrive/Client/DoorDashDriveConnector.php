@@ -16,7 +16,9 @@ use Dots\DoorDashDrive\Client\Requests\Deliveries\DTO\CreateDeliveryDTO;
 use Dots\DoorDashDrive\Client\Requests\Deliveries\DTO\UpdateDeliveryDTO;
 use Dots\DoorDashDrive\Client\Requests\Deliveries\GetDeliveryRequest;
 use Dots\DoorDashDrive\Client\Requests\Deliveries\UpdateDeliveryRequest;
+use Dots\DoorDashDrive\Client\Requests\Quotes\AcceptQuoteRequest;
 use Dots\DoorDashDrive\Client\Requests\Quotes\CreateQuoteRequest;
+use Dots\DoorDashDrive\Client\Requests\Quotes\DTO\AcceptQuoteDTO;
 use Dots\DoorDashDrive\Client\Requests\Quotes\DTO\CreateQuoteDTO;
 use Dots\DoorDashDrive\Client\Responses\Deliveries\DeliveryResponseDTO;
 use Dots\DoorDashDrive\Client\Responses\ErrorResponseDTO;
@@ -90,6 +92,14 @@ class DoorDashDriveConnector extends Connector
     public function createQuote(CreateQuoteDTO $dto): DeliveryResponseDTO
     {
         return $this->send(new CreateQuoteRequest($dto))->dto();
+    }
+
+    /**
+     * @throws DoorDashDriveException
+     */
+    public function acceptQuote(string $externalDeliveryId, AcceptQuoteDTO $dto): DeliveryResponseDTO
+    {
+        return $this->send(new AcceptQuoteRequest($externalDeliveryId, $dto))->dto();
     }
 
     // --- Configuration ---
