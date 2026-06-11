@@ -40,6 +40,8 @@ class CreateQuoteDTO extends DTO
 
     protected ?array $order_contains;
 
+    protected ?array $items;
+
     public function getExternalDeliveryId(): string
     {
         return $this->external_delivery_id;
@@ -108,5 +110,10 @@ class CreateQuoteDTO extends DTO
     public function getOrderContains(): ?array
     {
         return $this->order_contains;
+    }
+
+    public function getItems(): ?array
+    {
+        return $this->items;
     }
 }

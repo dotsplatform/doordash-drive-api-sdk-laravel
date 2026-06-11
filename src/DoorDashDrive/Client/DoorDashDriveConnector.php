@@ -11,6 +11,8 @@ namespace Dots\DoorDashDrive\Client;
 use Dots\DoorDashDrive\Client\DTO\DoorDashDriveAuthDTO;
 use Dots\DoorDashDrive\Client\Exceptions\DoorDashDriveException;
 use Dots\DoorDashDrive\Client\Requests\Deliveries\CancelDeliveryRequest;
+use Dots\DoorDashDrive\Client\Requests\Businesses\GetBusinessesRequest;
+use Dots\DoorDashDrive\Client\Requests\Businesses\GetStoresRequest;
 use Dots\DoorDashDrive\Client\Requests\Deliveries\CreateDeliveryRequest;
 use Dots\DoorDashDrive\Client\Requests\Deliveries\DTO\CreateDeliveryDTO;
 use Dots\DoorDashDrive\Client\Requests\Deliveries\DTO\UpdateDeliveryDTO;
@@ -20,6 +22,8 @@ use Dots\DoorDashDrive\Client\Requests\Quotes\AcceptQuoteRequest;
 use Dots\DoorDashDrive\Client\Requests\Quotes\CreateQuoteRequest;
 use Dots\DoorDashDrive\Client\Requests\Quotes\DTO\AcceptQuoteDTO;
 use Dots\DoorDashDrive\Client\Requests\Quotes\DTO\CreateQuoteDTO;
+use Dots\DoorDashDrive\Client\Responses\Businesses\BusinessListResponseDTO;
+use Dots\DoorDashDrive\Client\Responses\Businesses\StoreListResponseDTO;
 use Dots\DoorDashDrive\Client\Responses\Deliveries\DeliveryResponseDTO;
 use Dots\DoorDashDrive\Client\Responses\ErrorResponseDTO;
 use Saloon\Http\Connector;
@@ -100,6 +104,24 @@ class DoorDashDriveConnector extends Connector
     public function acceptQuote(string $externalDeliveryId, AcceptQuoteDTO $dto): DeliveryResponseDTO
     {
         return $this->send(new AcceptQuoteRequest($externalDeliveryId, $dto))->dto();
+    }
+
+    // --- Businesses & Stores ---
+
+    /**
+     * @throws DoorDashDriveException
+     */
+    public function getBusinesses(): BusinessListResponseDTO
+    {
+        return $this->send(new GetBusinessesRequest())->dto();
+    }
+
+    /**
+     * @throws DoorDashDriveException
+     */
+    public function getStores(string $externalBusinessId): StoreListResponseDTO
+    {
+        return $this->send(new GetStoresRequest($externalBusinessId))->dto();
     }
 
     // --- Configuration ---
