@@ -8,12 +8,15 @@
 
 namespace Dots\DoorDashDrive\Client\Requests\Deliveries;
 
-use Dots\DoorDashDrive\Client\Requests\PutDoorDashDriveRequest;
+use Dots\DoorDashDrive\Client\Requests\BaseDoorDashDriveRequest;
 use Dots\DoorDashDrive\Client\Responses\Deliveries\DeliveryResponseDTO;
+use Saloon\Enums\Method;
 use Saloon\Http\Response;
 
-class CancelDeliveryRequest extends PutDoorDashDriveRequest
+class CancelDeliveryRequest extends BaseDoorDashDriveRequest
 {
+    protected Method $method = Method::PUT;
+
     private const string ENDPOINT_TEMPLATE = '/drive/v2/deliveries/%s/cancel';
 
     public function __construct(
