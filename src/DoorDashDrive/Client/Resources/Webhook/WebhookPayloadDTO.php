@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Description of WebhookPayloadDTO.php
  * @copyright Copyright (c) DOTSPLATFORM, LLC

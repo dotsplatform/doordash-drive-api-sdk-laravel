@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Description of DoorDashDriveJwtGenerator.php
  * @copyright Copyright (c) DOTSPLATFORM, LLC
@@ -29,7 +30,7 @@ class DoorDashDriveJwtGenerator
 
         $signature = $this->sign($header, $payload);
 
-        return $header . '.' . $payload . '.' . $signature;
+        return $header.'.'.$payload.'.'.$signature;
     }
 
     private function encodeHeader(): string
@@ -60,7 +61,7 @@ class DoorDashDriveJwtGenerator
 
     private function sign(string $header, string $payload): string
     {
-        $data = $header . '.' . $payload;
+        $data = $header.'.'.$payload;
 
         $decodedSecret = $this->base64UrlDecode($this->authDTO->getSigningSecret());
 

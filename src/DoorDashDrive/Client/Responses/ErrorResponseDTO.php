@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Description of ErrorResponseDTO.php
  * @copyright Copyright (c) DOTSPLATFORM, LLC
@@ -41,7 +42,7 @@ class ErrorResponseDTO extends DoorDashDriveResponseDTO
     private function formatFieldErrors(array $fieldErrors): string
     {
         $messages = array_filter(
-            array_map(fn (array $error) => $error['field'] . ': ' . ($error['error'] ?? 'invalid'), $fieldErrors),
+            array_map(fn (array $error) => $error['field'].': '.($error['error'] ?? 'invalid'), $fieldErrors),
         );
 
         if (empty($messages)) {

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Description of CancelDeliveryDoorDashDriveCommand.php
  * @copyright Copyright (c) DOTSPLATFORM, LLC
@@ -22,7 +23,7 @@ class CancelDeliveryDoorDashDriveCommand extends BaseDoorDashDriveCommand
                 $this->argument('externalDeliveryId'),
             );
 
-            $this->info('Delivery cancelled. Status: ' . ($response->getDeliveryStatus()?->value ?? 'cancelled'));
+            $this->info('Delivery cancelled. Status: '.($response->getDeliveryStatus()?->value ?? 'cancelled'));
         } catch (DoorDashDriveException $e) {
             $this->error($e->getErrorResponseDTO()->getMessage());
         }

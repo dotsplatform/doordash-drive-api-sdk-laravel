@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Description of WebhookEventType.php
  * @copyright Copyright (c) DOTSPLATFORM, LLC
@@ -10,12 +11,15 @@ namespace Dots\DoorDashDrive\Client\Resources\Consts;
 enum WebhookEventType: string
 {
     case DASHER_CONFIRMED = 'DASHER_CONFIRMED';
+    case DASHER_ENROUTE_TO_PICKUP = 'DASHER_ENROUTE_TO_PICKUP';
     case DASHER_CONFIRMED_PICKUP_ARRIVAL = 'DASHER_CONFIRMED_PICKUP_ARRIVAL';
     case DASHER_PICKED_UP = 'DASHER_PICKED_UP';
+    case DASHER_ENROUTE_TO_DROPOFF = 'DASHER_ENROUTE_TO_DROPOFF';
     case DASHER_CONFIRMED_DROPOFF_ARRIVAL = 'DASHER_CONFIRMED_DROPOFF_ARRIVAL';
     case DASHER_DROPPED_OFF = 'DASHER_DROPPED_OFF';
     case DELIVERY_CANCELLED = 'DELIVERY_CANCELLED';
     case DELIVERY_RETURN_INITIALIZED = 'DELIVERY_RETURN_INITIALIZED';
+    case DASHER_ENROUTE_TO_RETURN = 'DASHER_ENROUTE_TO_RETURN';
     case DASHER_CONFIRMED_RETURN_ARRIVAL = 'DASHER_CONFIRMED_RETURN_ARRIVAL';
     case DELIVERY_RETURNED = 'DELIVERY_RETURNED';
     case DELIVERY_BATCHED = 'DELIVERY_BATCHED';
@@ -54,10 +58,20 @@ enum WebhookEventType: string
         return $this === self::DASHER_PICKED_UP;
     }
 
+    public function isLocationUpdate(): bool
+    {
+        return in_array($this, [
+            self::DASHER_ENROUTE_TO_PICKUP,
+            self::DASHER_ENROUTE_TO_DROPOFF,
+            self::DASHER_ENROUTE_TO_RETURN,
+        ], true);
+    }
+
     public function isReturnEvent(): bool
     {
         return in_array($this, [
             self::DELIVERY_RETURN_INITIALIZED,
+            self::DASHER_ENROUTE_TO_RETURN,
             self::DASHER_CONFIRMED_RETURN_ARRIVAL,
             self::DELIVERY_RETURNED,
         ], true);

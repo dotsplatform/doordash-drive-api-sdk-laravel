@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Description of DeliveryResponseDTO.php
  * @copyright Copyright (c) DOTSPLATFORM, LLC

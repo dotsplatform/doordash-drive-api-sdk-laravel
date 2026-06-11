@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Description of CreateDeliveryDoorDashDriveCommand.php
  * @copyright Copyright (c) DOTSPLATFORM, LLC
@@ -28,10 +29,10 @@ class CreateDeliveryDoorDashDriveCommand extends BaseDoorDashDriveCommand
                 ]),
             );
 
-            $this->info('Delivery ID: ' . $response->getExternalDeliveryId());
-            $this->info('Status: ' . ($response->getDeliveryStatus()?->value ?? 'unknown'));
-            $this->info('Tracking URL: ' . ($response->getTrackingUrl() ?? 'N/A'));
-            $this->info('Fee: ' . ($response->getFee() ?? 'N/A'));
+            $this->info('Delivery ID: '.$response->getExternalDeliveryId());
+            $this->info('Status: '.($response->getDeliveryStatus()?->value ?? 'unknown'));
+            $this->info('Tracking URL: '.($response->getTrackingUrl() ?? 'N/A'));
+            $this->info('Fee: '.($response->getFee() ?? 'N/A'));
         } catch (DoorDashDriveException $e) {
             $this->error($e->getErrorResponseDTO()->getMessage());
         }

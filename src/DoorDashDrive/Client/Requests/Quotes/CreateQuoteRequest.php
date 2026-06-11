@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Description of CreateQuoteRequest.php
  * @copyright Copyright (c) DOTSPLATFORM, LLC

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Description of GetDeliveryDoorDashDriveCommand.php
  * @copyright Copyright (c) DOTSPLATFORM, LLC
@@ -22,11 +23,11 @@ class GetDeliveryDoorDashDriveCommand extends BaseDoorDashDriveCommand
                 $this->argument('externalDeliveryId'),
             );
 
-            $this->info('Delivery ID: ' . $response->getExternalDeliveryId());
-            $this->info('Status: ' . ($response->getDeliveryStatus()?->value ?? 'unknown'));
-            $this->info('Tracking URL: ' . ($response->getTrackingUrl() ?? 'N/A'));
-            $this->info('Fee: ' . ($response->getFee() ?? 'N/A'));
-            $this->info('Dasher: ' . ($response->getDasherName() ?? 'Not assigned'));
+            $this->info('Delivery ID: '.$response->getExternalDeliveryId());
+            $this->info('Status: '.($response->getDeliveryStatus()?->value ?? 'unknown'));
+            $this->info('Tracking URL: '.($response->getTrackingUrl() ?? 'N/A'));
+            $this->info('Fee: '.($response->getFee() ?? 'N/A'));
+            $this->info('Dasher: '.($response->getDasherName() ?? 'Not assigned'));
         } catch (DoorDashDriveException $e) {
             $this->error($e->getErrorResponseDTO()->getMessage());
         }

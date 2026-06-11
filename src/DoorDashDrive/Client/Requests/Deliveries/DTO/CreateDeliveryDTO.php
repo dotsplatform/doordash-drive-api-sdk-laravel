@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Description of CreateDeliveryDTO.php
  * @copyright Copyright (c) DOTSPLATFORM, LLC
@@ -16,6 +17,8 @@ class CreateDeliveryDTO extends DTO
     protected string $pickup_address;
 
     protected string $dropoff_address;
+
+    protected ?array $dropoff_location;
 
     protected int $order_value;
 
@@ -45,8 +48,6 @@ class CreateDeliveryDTO extends DTO
 
     protected ?int $tip;
 
-    protected ?bool $contains_alcohol;
-
     protected ?bool $contactless_dropoff;
 
     protected ?string $pickup_time;
@@ -55,7 +56,7 @@ class CreateDeliveryDTO extends DTO
 
     protected ?string $action_if_undeliverable;
 
-    protected ?array $allowed_vehicles;
+    protected ?array $dasher_allowed_vehicles;
 
     protected ?array $order_contains;
 
@@ -74,6 +75,11 @@ class CreateDeliveryDTO extends DTO
     public function getDropoffAddress(): string
     {
         return $this->dropoff_address;
+    }
+
+    public function getDropoffLocation(): ?array
+    {
+        return $this->dropoff_location;
     }
 
     public function getOrderValue(): int
@@ -146,11 +152,6 @@ class CreateDeliveryDTO extends DTO
         return $this->tip;
     }
 
-    public function getContainsAlcohol(): ?bool
-    {
-        return $this->contains_alcohol;
-    }
-
     public function getContactlessDropoff(): ?bool
     {
         return $this->contactless_dropoff;
@@ -171,9 +172,9 @@ class CreateDeliveryDTO extends DTO
         return $this->action_if_undeliverable;
     }
 
-    public function getAllowedVehicles(): ?array
+    public function getDasherAllowedVehicles(): ?array
     {
-        return $this->allowed_vehicles;
+        return $this->dasher_allowed_vehicles;
     }
 
     public function getOrderContains(): ?array

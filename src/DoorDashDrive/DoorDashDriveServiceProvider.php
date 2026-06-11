@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Description of DoorDashDriveServiceProvider.php
  * @copyright Copyright (c) DOTSPLATFORM, LLC
@@ -19,7 +20,7 @@ class DoorDashDriveServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->publishes([
-            __DIR__ . '/../../config/doordash-drive.php' => config_path('doordash-drive.php'),
+            __DIR__.'/../../config/doordash-drive.php' => config_path('doordash-drive.php'),
         ]);
 
         if ($this->app->runningInConsole()) {
@@ -40,7 +41,7 @@ class DoorDashDriveServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->mergeConfigFrom(
-            __DIR__ . '/../../config/doordash-drive.php',
+            __DIR__.'/../../config/doordash-drive.php',
             'doordash-drive',
         );
     }
