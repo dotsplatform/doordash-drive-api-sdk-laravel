@@ -10,6 +10,7 @@ namespace Dots\DoorDashDrive\Client\Resources\Consts;
 
 enum DeliveryStatus: string
 {
+    case QUOTE = 'quote';
     case CREATED = 'created';
     case CONFIRMED = 'confirmed';
     case ENROUTE_TO_PICKUP = 'enroute_to_pickup';
@@ -20,6 +21,7 @@ enum DeliveryStatus: string
     case DELIVERED = 'delivered';
     case CANCELLED = 'cancelled';
     case ENROUTE_TO_RETURN = 'enroute_to_return';
+    case ARRIVED_AT_RETURN = 'arrived_at_return';
     case RETURNED = 'returned';
 
     public function isCompleted(): bool
