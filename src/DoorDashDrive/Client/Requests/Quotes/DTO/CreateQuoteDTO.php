@@ -34,6 +34,8 @@ class CreateQuoteDTO extends DTO
 
     protected ?string $dropoff_contact_family_name;
 
+    protected ?bool $dropoff_contact_send_notifications;
+
     protected ?string $pickup_time;
 
     protected ?string $dropoff_time;
@@ -95,6 +97,11 @@ class CreateQuoteDTO extends DTO
     public function getDropoffContactFamilyName(): ?string
     {
         return $this->dropoff_contact_family_name;
+    }
+
+    public function getDropoffContactSendNotifications(): ?bool
+    {
+        return $this->dropoff_contact_send_notifications;
     }
 
     public function getPickupTime(): ?string
