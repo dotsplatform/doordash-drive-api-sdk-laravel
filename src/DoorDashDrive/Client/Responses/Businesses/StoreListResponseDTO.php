@@ -16,6 +16,8 @@ class StoreListResponseDTO extends DoorDashDriveResponseDTO
 {
     protected int $result_count;
 
+    protected ?string $continuation_token;
+
     /** @var StoreDTO[] */
     protected array $result = [];
 
@@ -33,6 +35,14 @@ class StoreListResponseDTO extends DoorDashDriveResponseDTO
     public function getResultCount(): int
     {
         return $this->result_count;
+    }
+
+    /**
+     * Null when the listing has no further page.
+     */
+    public function getContinuationToken(): ?string
+    {
+        return $this->continuation_token;
     }
 
     /**

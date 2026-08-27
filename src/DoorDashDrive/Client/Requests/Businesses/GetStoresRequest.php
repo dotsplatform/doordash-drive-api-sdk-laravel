@@ -9,6 +9,7 @@
 namespace Dots\DoorDashDrive\Client\Requests\Businesses;
 
 use Dots\DoorDashDrive\Client\Requests\BaseDoorDashDriveRequest;
+use Dots\DoorDashDrive\Client\Resources\Consts\StoreActivationStatus;
 use Dots\DoorDashDrive\Client\Responses\Businesses\StoreListResponseDTO;
 use Saloon\Http\Response;
 
@@ -18,7 +19,17 @@ class GetStoresRequest extends BaseDoorDashDriveRequest
 
     public function __construct(
         protected readonly string $externalBusinessId,
+        protected readonly ?StoreActivationStatus $activationStatus = null,
+        protected readonly ?string $continuationToken = null,
     ) {
+    }
+
+    protected function defaultQuery(): array
+    {
+        return array_filter([
+            'activationStatus' => $this->activationStatus?->value,
+            'continuationToken' => $this->continuationToken,
+        ], fn ($value) => $value !== null);
     }
 
     public function resolveEndpoint(): string

@@ -14,6 +14,8 @@ use Throwable;
 
 class DoorDashDriveException extends Exception
 {
+    private const int HTTP_NOT_FOUND = 404;
+
     public function __construct(
         private readonly ErrorResponseDTO $errorResponseDTO,
         string $message = '',
@@ -26,5 +28,13 @@ class DoorDashDriveException extends Exception
     public function getErrorResponseDTO(): ErrorResponseDTO
     {
         return $this->errorResponseDTO;
+    }
+
+    /**
+     * The exception code carries the HTTP status returned by DoorDash.
+     */
+    public function isNotFound(): bool
+    {
+        return $this->getCode() === self::HTTP_NOT_FOUND;
     }
 }
