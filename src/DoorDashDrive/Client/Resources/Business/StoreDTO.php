@@ -9,6 +9,7 @@
 namespace Dots\DoorDashDrive\Client\Resources\Business;
 
 use Dots\Data\DTO;
+use Dots\DoorDashDrive\Client\Resources\Consts\StoreActivationStatus;
 
 class StoreDTO extends DTO
 {
@@ -22,9 +23,17 @@ class StoreDTO extends DTO
 
     protected ?string $address;
 
+    /**
+     * Kept as a raw string so that a status DoorDash adds later cannot break parsing
+     * of an otherwise valid response.
+     */
     protected ?string $status;
 
     protected ?bool $is_test;
+
+    protected ?string $created_at;
+
+    protected ?string $last_updated_at;
 
     public function getExternalStoreId(): string
     {
@@ -56,8 +65,23 @@ class StoreDTO extends DTO
         return $this->status;
     }
 
+    public function isActive(): bool
+    {
+        return $this->status === StoreActivationStatus::ACTIVE->value;
+    }
+
     public function isTest(): ?bool
     {
         return $this->is_test;
+    }
+
+    public function getCreatedAt(): ?string
+    {
+        return $this->created_at;
+    }
+
+    public function getLastUpdatedAt(): ?string
+    {
+        return $this->last_updated_at;
     }
 }
