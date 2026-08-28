@@ -10,6 +10,14 @@ namespace Dots\DoorDashDrive\Client\Responses;
 
 class ErrorResponseDTO extends DoorDashDriveResponseDTO
 {
+    private const string UNKNOWN_ERROR_MESSAGE = 'Unknown error';
+
+    private const string UNKNOWN_FIELD_ERROR = 'invalid';
+
+    private const string MESSAGE_PARTS_SEPARATOR = ' - ';
+
+    private const string FIELD_ERRORS_SEPARATOR = '; ';
+
     protected ?string $code;
 
     protected ?string $message;
@@ -26,29 +34,43 @@ class ErrorResponseDTO extends DoorDashDriveResponseDTO
         return $this->field_errors;
     }
 
+    /**
+     * DoorDash answers a rejected payload with a generic message such as
+     * "Validation Failed" and puts the actionable part in field_errors, so both are
+     * combined instead of returning the message alone.
+     */
     public function getMessage(): string
     {
-        if ($this->message) {
-            return $this->message;
+        $parts = array_filter([
+            $this->message,
+            $this->formatFieldErrors(),
+        ]);
+
+        if (empty($parts)) {
+            return $this->code ?? self::UNKNOWN_ERROR_MESSAGE;
         }
 
-        if (! empty($this->field_errors)) {
-            return $this->formatFieldErrors($this->field_errors);
-        }
-
-        return $this->code ?? 'Unknown error';
+        return implode(self::MESSAGE_PARTS_SEPARATOR, $parts);
     }
 
-    private function formatFieldErrors(array $fieldErrors): string
+    private function formatFieldErrors(): string
     {
-        $messages = array_filter(
-            array_map(fn (array $error) => $error['field'].': '.($error['error'] ?? 'invalid'), $fieldErrors),
-        );
-
-        if (empty($messages)) {
-            return 'Validation failed';
+        if (empty($this->field_errors)) {
+            return '';
         }
 
-        return implode('; ', $messages);
+        $messages = [];
+
+        foreach ($this->field_errors as $fieldError) {
+            $field = $fieldError['field'] ?? null;
+
+            if (! $field) {
+                continue;
+            }
+
+            $messages[] = $field.': '.($fieldError['error'] ?? self::UNKNOWN_FIELD_ERROR);
+        }
+
+        return implode(self::FIELD_ERRORS_SEPARATOR, $messages);
     }
 }
